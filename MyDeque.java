@@ -27,7 +27,7 @@ public class MyDeque<E>{
     return newstr;
   }
   public void addFirst(E element){
-
+    
   }
   public void addLast(E element){
 
