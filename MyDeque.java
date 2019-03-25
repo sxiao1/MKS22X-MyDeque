@@ -1,3 +1,5 @@
+
+import java.util.*;
 public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
@@ -21,10 +23,10 @@ public class MyDeque<E>{
   public int size(){
     return size; //returns size when called
   }
-  public void resize(){
+  public void resize(){ //to change the size of the array when needed
     if(size() == data.length){
       @SuppressWarnings("unchecked")
-      E[] temp = (E[]) new Object[data.length * 2];
+      E[] temp = (E[]) new Object[data.length * 2]; //creating a new array with double the size
       int count = 0;
       while(count < data.length){
         temp[count] = data[(start + count) % data.length];
@@ -45,29 +47,29 @@ public class MyDeque<E>{
   public void addFirst(E element){
     resize();
     if(size == 0){
-      data[start] = element;
+      data[start] = element; //if the size is 0 then just add to the front
     }
     else if(start == 0){
       data[data.length -1] = element;
       start = data.length -1;
     }
     else{
-      data[start - 1] = element;
+      data[start - 1] = element; // add to the beginning
       start --;
     }
     size++;
   }
   public void addLast(E element){
     resize();
-    if(size == 0){
+    if(size == 0){ //some exceptions
       data[start] = element;
     }
     else if(end == data.length -1 ){
       data[0] = element;
       end = 0;
     }
-    else{
-      data[end - 1] = element;
+    else{ //add to the end of the array
+      data[end + 1] = element;
       end ++;
     }
     size ++;
@@ -75,12 +77,12 @@ public class MyDeque<E>{
   public E removeFirst(){
     E num = data[start];
     if(start == data.length -1){
-      data[start] = null;
+      data[start] = null; //set the position to null
       start = (start + 1) % data.length;
     }
     else{
       data[start] = null;
-      start ++;
+      start ++; //move the start over one position
     }
     return num;
   }
@@ -92,9 +94,9 @@ public class MyDeque<E>{
     }
     else{
       data[end] = null;
-      end--;
+      end--; //moving end back one position
     }
-    size --;
+    size --;//array gets smaller 
     return num;
   }
   public E getFirst(){
