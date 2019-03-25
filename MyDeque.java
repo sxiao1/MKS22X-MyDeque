@@ -72,25 +72,30 @@ public class MyDeque<E>{
     }
     size ++;
   }
-  public void expand(E[]data){
-    @SuppressWarnings("unchecked")
-    E[] temp = (E[])new Object[data.length * 2];
-    for(int i = 0; i < data.length; i ++){
-      temp[i] = data[i];
-    }
-    /*@SuppressWarnings("unchecked")
-    data = temp;
-    for(int i = 0; i < temp.length; i++){
-      data[i] = temp[i];
-    }*/
-  }
   public E removeFirst(){
-    start ++;
-    return data[start -1];
+    E num = data[start];
+    if(start == data.length -1){
+      data[start] = null;
+      start = (start + 1) % data.length;
+    }
+    else{
+      data[start] = null;
+      start ++;
+    }
+    return num;
   }
   public E removeLast(){
-    end --;
-    return data[end -1];
+    E num = data[end];
+    if(end == 0){
+      data[end] = null;
+      end = data.length -1;
+    }
+    else{
+      data[end] = null;
+      end--;
+    }
+    size --;
+    return num;
   }
   public E getFirst(){
     return data[start];
