@@ -5,7 +5,15 @@ public class Calculator{
     public static double eval(String s){
       String[] newArray = s.split(" ");
       MyDeque array = new MyDeque(newArray.length);
-      System.out.println(toString(newArray));
+      for(int i = 0; i < newArray.length; i++){
+        if(newArray[i] != "+" && newArray[i] != "-" && newArray[i] != "*" && newArray[i] != "/" && newArray[i] != "%"){
+          array.addLast(newArray[i]);
+        }
+        else if(newArray[i].equals("+")){
+          double first = (double)array.getLast();
+        }
+      }
+      //System.out.println(toString(newArray));
       return 0.0;
     }
     public static String toString(String[] array){
