@@ -2,17 +2,14 @@ public class Calculator{
     /*Evaluate a postfix expression stored in s.
      *Assume valid postfix notation, separated by spaces.
      */
-    /*public static double eval(String s){
-      s = s.split(" ");
-      int[] nums = new int[s.length];
-      for(int i = 0; i < nums.length; i++){
-        if(s.charAt(i).equals("+") ||s.charAt(i).equals("-") || s.charAt(i).equals("*") || s.charAt(i).equals("/") || s.charAt(i).equals("%")){
-          if((s.charAt(i)).equals("+")){
-            nums[i] = 1;
-          }
-
-        }
-      }
+    public static double eval(String s){
+      String[] newArray = s.split(" ");
+      MyDeque array = new MyDeque(newArray.length);
+      System.out.println(newArray);
       return 0.0;
-    }*/
+    }
+    public static void main(String[] args){
+      Calculator test = new Calculator();
+      System.out.println(test.eval("1 3 + 4 5 9 -"));
+    }
 }
