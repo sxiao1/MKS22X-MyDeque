@@ -11,9 +11,14 @@ public class Calculator{
         }
         else if(newArray[i].equals("+")){
           double first = (double)array.getLast();
+          array.removeLast();
+          double second = (double) array.getLast();
+          double answer = first + second;
+          array.removeLast();
+          array.addLast(answer);
         }
       }
-      //System.out.println(toString(newArray));
+      System.out.println(array.toString());
       return 0.0;
     }
     public static String toString(String[] array){
