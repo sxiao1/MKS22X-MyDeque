@@ -4,20 +4,47 @@ public class Calculator{
      */
     public static double eval(String s){
       String[] newArray = s.split(" ");
-      MyDeque array = new MyDeque(newArray.length);
+      MyDeque<Double>array = new MyDeque<Double>();
       for(int i = 0; i < newArray.length; i++){
-        if(newArray[i] != "+" && newArray[i] != "-" && newArray[i] != "*" && newArray[i] != "/" && newArray[i] != "%"){
-          array.addLast(newArray[i]);
-        }
-        else if(newArray[i].equals("+")){
-          double first = (double)array.getLast();
-          array.removeLast();
-          double second = (double) array.getLast();
-          double answer = first + second;
-          array.removeLast();
-          array.addLast(answer);
-        }
+        if(newArray[i].length() == 1 && (newArray[i].equals("+")|| newArray[i].equals("-") || newArray[i].equals("*") || newArray[i].equals("/") || newArray[i].equals("%"))){
+          if(array.size() >= 2){
+            double second = (double)array.getLast();
+            array.removeLast();
+            double first = (double) array.getLast();
+            array.removeLast();
+            if(newArray[i].equals("+")){
+              double newVal = first + second;
+              array.addLast(newVal);
+            }
+            if(newArray[i].equals("-")){
+              double newVal = first - second;
+              array.addLast(newVal);
+            }
+            if(newArray[i].equals("*")){
+              double newVal = first * second;
+              array.addLast(newVal);
+            }
+            if(newArray[i].equals("/")){
+              if(second == 0){
+                array.addLast(0.0);
+              }
+              else{
+                double newVal = first / second;
+                array.addLast(newVal);
+              }
+            }
+            if(newArray[i].equals("%")){
+              if(second == 0){
+                array.addLast(0.0);
+              }
+              else{
+                double newVal = first % second;
+                array.addLast(newVal);
+              }
+            }
+          }
       }
+    }
       System.out.println(array.toString());
       return 0.0;
     }
