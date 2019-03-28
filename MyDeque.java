@@ -1,5 +1,6 @@
 
 import java.util.*;
+import java.io.*;
 public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
@@ -87,16 +88,22 @@ public class MyDeque<E>{
     return num;
   }
   public E removeLast(){
+    if(size == 0){
+      throw new NoSuchElementException();
+    }
     E num = data[end];
-    if(end == 0){
-      data[end] = null;
-      end = data.length -1;
+    data[end] = null;
+    size--;
+    if(start <= end){
+      if(size >= 1){
+        end--;
+      }
     }
     else{
-      data[end] = null;
-      end--; //moving end back one position
+      if(end == 0){
+        end = data.length -1;
+      }
     }
-    size --;//array gets smaller 
     return num;
   }
   public E getFirst(){

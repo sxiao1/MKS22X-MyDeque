@@ -4,14 +4,13 @@ public class Calculator{
      */
     public static double eval(String s){
       String[] newArray = s.split(" ");
-      MyDeque<Double>array = new MyDeque<Double>();
+      MyDeque<Double> array = new MyDeque<Double>();
       for(int i = 0; i < newArray.length; i++){
         if(newArray[i].length() == 1 && (newArray[i].equals("+")|| newArray[i].equals("-") || newArray[i].equals("*") || newArray[i].equals("/") || newArray[i].equals("%"))){
           if(array.size() >= 2){
-            double second = (double)array.getLast();
-            array.removeLast();
-            double first = (double) array.getLast();
-            array.removeLast();
+            //System.out.println(array);
+            double second = array.removeLast();
+            double first = array.removeLast();
             if(newArray[i].equals("+")){
               double newVal = first + second;
               array.addLast(newVal);
@@ -43,10 +42,12 @@ public class Calculator{
               }
             }
           }
+        }
+        else{
+          array.addLast(Double.parseDouble(newArray[i]));
+        }
       }
-    }
-      System.out.println(array.toString());
-      return 0.0;
+      return array.getFirst();
     }
     public static String toString(String[] array){
       String newstr = "";
@@ -54,6 +55,10 @@ public class Calculator{
         newstr += array[i];
       }
       return newstr;
+    }
+    public static void main(String[] args){
+      System.out.println(eval("10 2.0 +"));
+      System.out.println(eval("8 2 + 99 9 - * 2 + 9 -"));
     }
 
 }
